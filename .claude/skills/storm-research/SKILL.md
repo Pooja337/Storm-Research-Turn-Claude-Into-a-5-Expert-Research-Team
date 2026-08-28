@@ -52,18 +52,23 @@ Working only from the five briefs, determine (do this inline, no agents):
 
 This map is not a separate deliverable. It is the raw material for the report's findings (supports/challenges), hidden connection, 6th-lens box, and frontier question.
 
-## Phase 3: Synthesize the HTML report
+## Phase 3: Synthesize the HTML briefing
 
-1. Read `report-template.html` in this skill folder. Clone it; do not rebuild the CSS.
+1. Read `report-template.html` in this skill folder. Clone it; do not rebuild the CSS or restructure it toward a website layout — it is a print-style document (serif type, hairline rules, footnote citations, table-based comparisons), not a landing page.
 2. Fill every section. Mapping from the phases:
-   - **60-second summary** — decision-maker-grade, nuance not headline. Lead with the settled fact, then the contested interpretation.
-   - **5 key findings, ranked by reliability** — most important things now known, highest reliability first. Each carries a 1-10 confidence score (set in Phase 4) and Supported-by / Challenged-by chips drawn from the contradiction map.
-   - **Hidden connection** — the non-obvious link from Phase 2 that only appears across all five lenses.
-   - **Key assumption / missing 6th lens** — the blind spot from Phase 2, framed as the lens that could change the conclusions.
-   - **Actionable insight** — 3-6 specific moves for the reader's role identified in Phase 0. Specific, not abstract.
-   - **Claim safety guide** — assert / caveat / avoid, populated after Phase 4 verification.
-   - **Frontier question** — the one question that would change everything.
-   - **References** — every citation with a verification-status tag (set in Phase 4).
+   - **Nameplate** — fixed masthead identity ("The Longview"); do not rename or restyle it per topic. Compute `{{ISSUE_CODE}}` as `YY.DDD` (two-digit year + zero-padded day-of-year) from `{{DATE}}` — e.g. 2026-08-28 → `26.240`. It must be reproducible from the date, never an incrementing/fabricated sequence.
+   - **Masthead** — title, one-sentence dek (the stakes, not a restatement of the title), byline row (method / audience), verify-line (filled after Phase 4).
+   - **Abstract** — decision-maker-grade, nuance not headline. Lead with the settled fact, then the contested interpretation.
+   - **Table of contents** — update the audience-qualifier text in section V's entry to match the reader's role from Phase 0.
+   - **I. Key findings** — ranked by reliability, highest first. Each carries a 1-10 confidence score (set in Phase 4) and Supported-by / Challenged-by lines drawn from the contradiction map. Use the contested-claim block for anything Phase 4 flagged as thin or contested.
+   - **II. Where the lenses disagree** — the contradiction map as an actual table: one row per lens (Practitioner, Academic, Skeptic, Economist, Historian) with its position and strongest evidence, plus the resolving question and universal agreement below it.
+   - **III. Hidden connection** — the non-obvious link from Phase 2 that only appears across all five lenses, set as the pull-quote.
+   - **IV. Assumptions & the missing lens** — the blind spot from Phase 2, framed as the lens that could invert the conclusions.
+   - **V. Implications** — 3-6 specific moves for the reader's role identified in Phase 0. Specific, not abstract.
+   - **VI. Claim safety guide** — assert / caveat / avoid, populated after Phase 4 verification.
+   - **VII. Open question** — the frontier question, as the closing pull-quote.
+   - **Endnotes** — every citation, footnote-style, with a verification-status tag (set in Phase 4).
+   - **Colophon** — verification tally and methodology disclosure.
 3. Write to `storm-reports/{topic-slug}-briefing.html` (relative to the current working directory; create the folder if needed).
 
 ## Phase 4: Adversarial peer review + verification (do not skip)
@@ -80,7 +85,7 @@ This is what separates Storm Research from a normal report. Run it before delive
 - Fix any wrong figures, titles, dates, or mischaracterizations.
 - Downgrade confidence scores where evidence turned out thin; demote preprints and contested claims into the "Contested signal" sidebar.
 - Re-attribute single-survey or commissioned stats honestly.
-- Fill the verification banner (`X fabricated, Y corrected, Z demoted`) and the per-citation status tags.
+- Fill the verify-line and colophon (`X fabricated, Y corrected, Z demoted`) and the per-endnote status tags.
 - Populate the claim safety guide from the verdicts.
 
 ## Output
@@ -97,4 +102,4 @@ This is what separates Storm Research from a normal report. Run it before delive
 - **Reliability = evidence quality, not confidence.** Score on the source hierarchy: peer-reviewed causal > official policy/financial data > single commissioned survey > analogy > preprint.
 - **Target the reader, not a default person.** The actionable insight and claim safety guide speak to the role identified in Phase 0. Keep them generic if no role is given.
 - **Cost.** This spawns ~9-11 agents per run. That is expected. Do not fan out wider than five lenses or one verifier per citation cluster.
-- **Design.** Clean white and professional (Montserrat / Roboto Mono, blue accent). Keep the template CSS verbatim. Do not swap in a different visual style.
+- **Design.** This is a print-style document published under a fixed masthead ("The Longview"), not a website: near-monochrome ink palette with exactly one spot color (used only for the accent bar, scores, issue mark, and verify-line — never as a second decorative hue), Fraunces serif for headings, Source Serif 4 for body, IBM Plex Mono for labels/citations/metadata. Rule weights are hierarchical (3px solid under the nameplate, 1.5px around tables/abstract, 1px hairlines between findings, 3px double rule before endnotes) — don't flatten them all to one weight. Assert/caveat/avoid distinctions come from glyphs (✓ ▲ ✕) and borders, not from three different hue-coded backgrounds. Real `<table>` for the contradiction map, footnote-style endnotes, no gradients, no colored pill/chip badges, no hero banner, no site nav. Keep the template CSS verbatim; it also carries a working print stylesheet (`@media print`) so the file opens cleanly as a PDF via the browser's print dialog. Do not swap in a different visual style or rename the masthead per topic.

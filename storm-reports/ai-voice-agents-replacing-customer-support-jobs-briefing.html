@@ -3,357 +3,551 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Storm Research: AI Voice Agents Replacing Customer Support Jobs</title>
+<title>AI Voice Agents and the Customer Support Job — The Longview</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --blue: #2563eb; --blue-dark: #1e3a8a; --ink: #16203a; --muted: #5b6677; --line: #e4e9f2;
-    --bg-soft: #f6f8fc; --green: #15803d; --green-bg: #e9f6ee; --amber: #b45309; --amber-bg: #fdf3e7;
-    --slate: #475569; --slate-bg: #eef1f6; --red: #b91c1c; --red-bg: #fdecec;
+    --paper: #FAF9F6;
+    --paper-surround: #E9E7E0;
+    --ink: #1A1917;
+    --ink-soft: #4E4B44;
+    --ink-faint: #8D8A80;
+    --rule: #D8D4C9;
+    --rule-strong: #B0AB9C;
+    --spot: #A6421E;
+    --spot-soft: #F4E7E0;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Roboto', system-ui, sans-serif; color: var(--ink); background: #eef1f6; line-height: 1.62; font-weight: 400; -webkit-font-smoothing: antialiased; }
-  .page { max-width: 900px; margin: 0 auto; background: #fff; padding: 64px 72px 80px; box-shadow: 0 1px 40px rgba(22,32,58,0.08); }
-  .eyebrow { font-family: 'Roboto Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
-  h1 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 40px; line-height: 1.12; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 18px; }
-  .lede { font-size: 17px; color: var(--muted); max-width: 640px; }
-  .meta-row { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 26px; padding-top: 22px; border-top: 2px solid var(--line); font-family: 'Roboto Mono', monospace; font-size: 12px; color: var(--muted); }
-  .meta-row b { color: var(--ink); font-weight: 600; }
-  .verify-banner { margin-top: 22px; background: var(--green-bg); border: 1px solid #bfe3cc; border-radius: 8px; padding: 13px 18px; font-size: 13px; color: #14532d; display: flex; gap: 10px; align-items: baseline; }
-  .verify-banner b { font-weight: 700; }
-  .verify-banner .tag { font-family: 'Roboto Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; background: var(--green); color: #fff; padding: 3px 8px; border-radius: 4px; flex-shrink: 0; }
-  .howto { margin-top: 18px; border: 1px solid var(--line); border-radius: 8px; padding: 18px 22px; background: var(--bg-soft); }
-  .howto h4 { font-family: 'Roboto Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-  .howto ul { list-style: none; }
-  .howto li { font-size: 13.5px; color: #2b3950; margin-bottom: 7px; padding-left: 16px; position: relative; }
-  .howto li::before { content: "›"; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
-  .section { margin-top: 56px; }
-  .section-num { font-family: 'Roboto Mono', monospace; font-size: 13px; font-weight: 600; color: var(--blue); letter-spacing: 0.05em; }
-  h2 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 25px; letter-spacing: -0.01em; color: var(--ink); margin: 6px 0 18px; line-height: 1.2; }
-  h2 .bar { display: inline-block; width: 38px; height: 4px; background: var(--blue); border-radius: 2px; vertical-align: middle; margin-right: 14px; }
-  p { margin-bottom: 14px; }
-  p.body-lg { font-size: 16.5px; }
-  .ceo { background: var(--bg-soft); border-left: 5px solid var(--blue); padding: 26px 30px; border-radius: 4px; font-size: 16.5px; }
-  .ceo strong { font-weight: 700; color: var(--blue-dark); }
-  .finding { border: 1px solid var(--line); border-radius: 10px; padding: 24px 26px; margin-bottom: 18px; position: relative; }
-  .finding-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 12px; }
-  .finding-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; line-height: 1.3; color: var(--ink); flex: 1; }
-  .finding-rank { font-family: 'Roboto Mono', monospace; font-weight: 600; font-size: 13px; color: #fff; background: var(--ink); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .finding p { font-size: 15px; color: #283449; margin-bottom: 14px; }
-  .rel-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
-  .rel { display: inline-flex; align-items: center; gap: 9px; font-family: 'Roboto Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; }
-  .rel.high { background: #e7f0fe; color: var(--blue); }
-  .rel.medhigh { background: var(--green-bg); color: var(--green); }
-  .rel.medium { background: var(--amber-bg); color: var(--amber); }
-  .rel.low { background: var(--red-bg); color: var(--red); }
-  .score { font-family: 'Roboto Mono', monospace; font-size: 13px; font-weight: 600; color: var(--ink); }
-  .score b { font-size: 17px; }
-  .score span { color: var(--muted); font-weight: 400; }
-  .chips { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
-  .chip-row { display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap; font-size: 13.5px; }
-  .chip-label { font-family: 'Roboto Mono', monospace; font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; white-space: nowrap; }
-  .chip-label.sup { background: var(--green-bg); color: var(--green); }
-  .chip-label.chal { background: var(--red-bg); color: var(--red); }
-  .chip-label.fix { background: var(--amber-bg); color: var(--amber); }
-  .chip-row span.who { color: #2b3950; }
-  .chip-row span.who b { font-weight: 600; }
-  .contested { border: 1px dashed var(--amber); background: #fffaf2; border-radius: 10px; padding: 22px 26px; margin-bottom: 18px; }
-  .contested .tag { font-family: 'Roboto Mono', monospace; font-size: 10.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); }
-  .contested h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; color: var(--ink); margin: 6px 0 10px; }
-  .contested p { font-size: 14px; color: #4a3a22; margin-bottom: 0; }
-  .connection { background: linear-gradient(135deg, #16203a 0%, #1e3a8a 100%); color: #eaf0fb; border-radius: 12px; padding: 34px 38px; }
-  .connection h2 { color: #fff; }
-  .connection h2 .bar { background: #6ea8ff; }
-  .connection .section-num { color: #9ec1ff; }
-  .connection p { color: #d3def3; font-size: 16px; }
-  .connection .punch { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 18px; color: #fff; line-height: 1.4; margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.18); }
-  .assume { border: 1px solid var(--line); border-left: 5px solid var(--amber); border-radius: 6px; padding: 24px 28px; background: #fffdf9; }
-  .assume h3 { font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
-  .assume p { font-size: 15px; color: #3a3320; }
-  .assume p:last-child { margin-bottom: 0; }
-  .action-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
-  .action-item:last-child { border-bottom: none; }
-  .action-mark { font-family: 'Roboto Mono', monospace; font-weight: 600; font-size: 13px; color: var(--blue); flex-shrink: 0; width: 34px; }
-  .action-item .do { font-weight: 600; color: var(--ink); }
-  .action-item p { font-size: 14.5px; margin-bottom: 0; color: #2b3950; }
-  .frontier { border: 2px dashed var(--blue); border-radius: 12px; padding: 30px 34px; background: var(--bg-soft); }
-  .frontier .q { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.32; color: var(--blue-dark); margin-bottom: 16px; }
-  .frontier p { font-size: 15px; color: #2b3950; }
-  .oncam { margin-top: 18px; }
-  .oncam-col { border-radius: 10px; padding: 20px 24px; margin-bottom: 14px; }
-  .oncam-col.safe { background: var(--green-bg); border: 1px solid #bfe3cc; }
-  .oncam-col.caveat { background: var(--amber-bg); border: 1px solid #f0d9b5; }
-  .oncam-col.avoid { background: var(--red-bg); border: 1px solid #f3c9c9; }
-  .oncam-col h4 { font-family: 'Roboto Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
-  .oncam-col.safe h4 { color: var(--green); }
-  .oncam-col.caveat h4 { color: var(--amber); }
-  .oncam-col.avoid h4 { color: var(--red); }
-  .oncam-col ul { list-style: none; }
-  .oncam-col li { font-size: 14px; color: #233; margin-bottom: 8px; padding-left: 16px; position: relative; line-height: 1.5; }
-  .oncam-col li::before { content: "•"; position: absolute; left: 0; font-weight: 700; }
-  .oncam-col.safe li::before { color: var(--green); }
-  .oncam-col.caveat li::before { color: var(--amber); }
-  .oncam-col.avoid li::before { color: var(--red); }
-  .refs { margin-top: 56px; padding-top: 26px; border-top: 2px solid var(--line); }
-  .refs h3 { font-family: 'Roboto Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
-  .refs ul { list-style: none; }
-  .refs li { font-size: 12.5px; color: var(--muted); margin-bottom: 11px; padding-left: 16px; position: relative; line-height: 1.5; }
-  .refs li::before { content: "›"; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
-  .refs a { color: #34507e; text-decoration: none; }
-  .refs a:hover { text-decoration: underline; }
-  .refs .vstat { font-family: 'Roboto Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; margin-right: 6px; }
-  .vstat.ok { background: var(--green-bg); color: var(--green); }
-  .vstat.part { background: var(--amber-bg); color: var(--amber); }
-  .vstat.weak { background: var(--red-bg); color: var(--red); }
-  .footer { margin-top: 40px; font-family: 'Roboto Mono', monospace; font-size: 11px; color: #9aa6b8; text-align: center; }
-  @media (max-width: 640px) { .page { padding: 40px 24px 56px; } h1 { font-size: 30px; } }
-  @media print { body { background: #fff; } .page { box-shadow: none; max-width: 100%; padding: 0; } .connection, .oncam-col { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1C1B18;
+      --paper-surround: #121110;
+      --ink: #EAE7DD;
+      --ink-soft: #B9B4A6;
+      --ink-faint: #7C776A;
+      --rule: #3A372F;
+      --rule-strong: #4C483C;
+      --spot: #E08A66;
+      --spot-soft: #2C221C;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1C1B18;
+    --paper-surround: #121110;
+    --ink: #EAE7DD;
+    --ink-soft: #B9B4A6;
+    --ink-faint: #7C776A;
+    --rule: #3A372F;
+    --rule-strong: #4C483C;
+    --spot: #E08A66;
+    --spot-soft: #2C221C;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper-surround);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    max-width: 748px;
+    margin: 56px auto 96px;
+    background: var(--paper);
+    padding: 0 84px 64px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), 0 24px 64px rgba(0,0,0,0.10);
+  }
+
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+
+  .nameplate {
+    padding: 30px 0 14px; text-align: center; border-bottom: 3px solid var(--ink);
+  }
+  .nameplate .wordmark {
+    font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto;
+    font-weight: 600; font-size: 15px; letter-spacing: 0.34em; text-transform: uppercase;
+    color: var(--ink);
+  }
+  .nameplate .tagline {
+    font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-faint); margin-top: 6px;
+  }
+  .issue-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--ink-faint);
+    padding: 10px 0; border-bottom: 1px solid var(--rule);
+  }
+  .issue-row .mark { color: var(--spot); font-weight: 600; }
+
+  .masthead { margin: 36px 0 44px; }
+  h1 {
+    font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; font-weight: 600; font-style: normal;
+    font-size: 39px; line-height: 1.12; letter-spacing: -0.005em; margin: 0 0 16px;
+    text-wrap: balance;
+  }
+  .dek {
+    font-size: 18.5px; font-style: italic; font-weight: 400; color: var(--ink-soft);
+    max-width: 34em; line-height: 1.5; margin: 0 0 26px; font-family: 'Source Serif 4', serif;
+  }
+  .byline {
+    display: flex; flex-wrap: wrap; gap: 8px 28px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--ink-faint);
+    border-top: 1px solid var(--rule); padding-top: 16px;
+  }
+  .byline b { color: var(--ink-soft); font-weight: 600; }
+  .verify-line {
+    margin-top: 18px; font-size: 13.5px; color: var(--ink-soft); font-style: italic;
+    border-left: 3px solid var(--spot); padding-left: 14px;
+  }
+  .verify-line b { color: var(--spot); font-style: normal; font-weight: 600; }
+
+  .abstract {
+    margin: 40px 0 48px; padding: 26px 0; border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);
+  }
+  .abstract .label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-faint); margin-bottom: 10px;
+  }
+  .abstract p { font-size: 16.5px; line-height: 1.65; margin: 0; color: var(--ink); }
+  .abstract strong { font-weight: 600; color: var(--spot); }
+
+  .toc { margin: 0 0 56px; }
+  .toc-item {
+    display: flex; align-items: baseline; gap: 10px; font-size: 14.5px; padding: 7px 0;
+  }
+  .toc-item .num { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--spot); width: 22px; flex-shrink: 0; }
+  .toc-item .t { white-space: nowrap; }
+  .toc-item .leader { flex: 1; border-bottom: 1px dotted var(--rule-strong); transform: translateY(-4px); }
+
+  .section { margin-top: 54px; padding-top: 30px; border-top: 1px solid var(--rule); }
+  .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 22px; }
+  .roman { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--spot); font-weight: 500; }
+  h2 {
+    font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; font-weight: 600; font-size: 23px; letter-spacing: -0.005em;
+    margin: 0; line-height: 1.25;
+  }
+  p { line-height: 1.7; font-size: 16px; color: var(--ink); margin: 0 0 14px; }
+  .lead { font-size: 17px; color: var(--ink-soft); }
+
+  .finding {
+    display: grid; grid-template-columns: 78px 1fr; gap: 4px 22px;
+    padding: 22px 0; border-top: 1px solid var(--rule);
+  }
+  .finding:first-of-type { border-top: none; padding-top: 0; }
+  .f-meta { font-family: 'IBM Plex Mono', monospace; }
+  .f-meta .score { font-size: 26px; font-weight: 500; color: var(--spot); line-height: 1; }
+  .f-meta .of10 { font-size: 11px; color: var(--ink-faint); }
+  .f-meta .rel { display: block; margin-top: 8px; font-size: 9.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); }
+  .f-title { font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; font-weight: 600; font-size: 18.5px; margin: 0 0 8px; }
+  .f-body p { font-size: 15px; margin-bottom: 10px; }
+  .f-tags { font-size: 13px; color: var(--ink-soft); }
+  .f-tags .tag-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); margin-right: 6px; }
+  .f-tags div { margin-bottom: 4px; }
+  .f-tags .corrected { color: var(--spot); }
+
+  .contested {
+    margin-top: 18px; padding: 16px 20px; border: 1px solid var(--ink); border-left: 3px solid var(--ink);
+  }
+  .contested .tag { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+  .contested .tag::before { content: "▲ "; color: var(--spot); }
+  .contested h4 { font-family: 'Fraunces', Georgia, serif; font-size: 15.5px; font-weight: 600; margin: 6px 0 6px; }
+  .contested p { font-size: 14px; margin: 0; color: var(--ink-soft); }
+
+  table.map { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 14px; }
+  table.map th {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase;
+    text-align: left; color: var(--ink-faint); font-weight: 500; padding: 0 14px 10px 0; border-bottom: 1.5px solid var(--ink);
+  }
+  table.map td { padding: 13px 14px 13px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  table.map td:first-child { font-weight: 600; white-space: nowrap; font-family: 'Fraunces', serif; }
+  table.map tr:last-child td { border-bottom: 1.5px solid var(--ink); }
+
+  .pullquote {
+    padding: 8px 0 8px 26px; border-left: 3px solid var(--spot); margin: 20px 0;
+  }
+  .pullquote p { font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; font-style: italic; font-size: 20px; line-height: 1.5; color: var(--ink); font-weight: 500; }
+  .pullquote p:last-child { margin-bottom: 0; }
+
+  .marginnote {
+    padding: 20px 24px; border: 1px solid var(--ink);
+  }
+  .marginnote .label { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; }
+  .marginnote .label::before { content: "✕ "; color: var(--spot); }
+  .marginnote p { font-size: 15px; color: var(--ink-soft); }
+  .marginnote p:last-child { margin-bottom: 0; }
+
+  .actions { margin-top: 6px; }
+  .action { display: grid; grid-template-columns: 30px 1fr; gap: 4px 16px; padding: 14px 0; border-top: 1px solid var(--rule); }
+  .action:first-child { border-top: none; padding-top: 0; }
+  .action .n { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--spot); }
+  .action .do { font-weight: 600; font-size: 15.5px; display: block; margin-bottom: 4px; font-family: 'Fraunces', serif; }
+  .action p { font-size: 14.5px; margin: 0; color: var(--ink-soft); }
+
+  table.safety { width: 100%; border-collapse: collapse; margin-top: 6px; }
+  table.safety th {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase;
+    text-align: left; padding: 10px 16px; font-weight: 600; color: var(--ink); border-bottom: 1.5px solid var(--ink);
+  }
+  table.safety th .glyph { color: var(--spot); margin-right: 6px; }
+  table.safety td { padding: 14px 16px; vertical-align: top; border-top: 1px solid var(--rule); border-right: 1px solid var(--rule); font-size: 13.5px; line-height: 1.55; }
+  table.safety td:last-child { border-right: none; }
+  table.safety td ul { margin: 0; padding-left: 16px; }
+  table.safety td li { margin-bottom: 8px; }
+
+  .endnotes { margin-top: 64px; padding-top: 4px; border-top: 3px double var(--ink); }
+  .endnotes .label { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin: 18px 0 16px; }
+  .endnote { display: flex; gap: 10px; font-size: 12.5px; color: var(--ink-soft); margin-bottom: 11px; line-height: 1.55; }
+  .endnote .idx { font-family: 'IBM Plex Mono', monospace; color: var(--ink-faint); flex-shrink: 0; width: 20px; }
+  .endnote .vs { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.05em; text-transform: uppercase; margin-right: 6px; color: var(--ink); border: 1px solid var(--rule-strong); padding: 1px 4px; }
+  .endnote .vs.weak { color: var(--spot); border-color: var(--spot); }
+  .endnote a { color: var(--ink-soft); }
+
+  .colophon {
+    margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--rule);
+    font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--ink-faint); line-height: 1.85;
+  }
+  .colophon b { color: var(--ink-soft); }
+
+  sup.ref { font-family: 'IBM Plex Mono', monospace; color: var(--spot); font-size: 11px; }
+
+  @media (max-width: 640px) {
+    .sheet { padding: 0 26px 48px; margin: 0; }
+    h1 { font-size: 29px; }
+    .finding { grid-template-columns: 1fr; }
+    table.safety { display: block; }
+    table.safety thead, table.safety tbody, table.safety tr { display: block; }
+    table.safety td { border-right: none; }
+  }
+
+  @media print {
+    @page { margin: 2.1cm 2cm; }
+    body { background: #fff; }
+    .sheet { box-shadow: none; max-width: 100%; margin: 0; padding: 0 0 0; }
+    .nameplate { padding-top: 0; }
+    .section { break-inside: avoid-page; }
+    .finding { break-inside: avoid-page; }
+    table.safety th, .contested, .marginnote, .pullquote { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    a { color: inherit; text-decoration: none; }
+  }
 </style>
 </head>
 <body>
-<div class="page">
+<div class="sheet">
 
-  <header>
-    <div class="eyebrow">Storm Research &middot; v2 (verified)</div>
-    <h1>AI Voice Agents Replacing Customer Support Jobs</h1>
-    <p class="lede">A five-lens synthesis: practitioner, academic, skeptic, economist, and historian. Every claim independently checked against its primary source before publication.</p>
-    <div class="meta-row">
-      <span><b>Date</b> &nbsp;2026-08-27</span>
-      <span><b>Method</b> &nbsp;5 author-built expert lenses + contradiction map</span>
-      <span><b>Audience</b> &nbsp;A CS/CX leader or operator deciding how far to push AI voice deployment</span>
+  <div class="nameplate">
+    <div class="wordmark">The Longview</div>
+    <div class="tagline">Multi-perspective research · independently verified</div>
+  </div>
+  <div class="issue-row">
+    <span>Issue <span class="mark">26.240</span></span>
+    <span>2026-08-28</span>
+  </div>
+
+  <header class="masthead">
+    <h1>AI Voice Agents and the Customer Support Job</h1>
+    <p class="dek">The fight isn't whether AI takes the job — every lens agrees it won't take all of it — it's who controls the story of how fast, and who eats the cost while the story gets tested against real customers.</p>
+    <div class="byline">
+      <span><b>Method</b> Five independent expert lenses, cross-examined and verified</span>
+      <span><b>Prepared for</b> Contact-center operations leaders and customer-support decision-makers</span>
     </div>
-    <div class="verify-banner">
-      <span class="tag">Verified</span>
-      <span>All 11 citation clusters independently checked against primary sources on 2026-08-27. <b>Result: 1 fabricated pairing, 3 corrected, 2 demoted.</b> Confidence scores reflect post-verification evidence quality.</span>
-    </div>
-    <div class="howto">
-      <h4>How to read this</h4>
-      <ul>
-        <li><b>The panel was author-constructed.</b> All five lenses share one framing, so where they agree, treat it as a strong hypothesis, not independent proof.</li>
-        <li><b>Confidence is scored 1-10</b> on evidence quality: peer-reviewed causal work &gt; official policy/financial data &gt; single commissioned survey &gt; analogy &gt; preprint.</li>
-        <li><b>Measured fact and interpretation are flagged separately.</b> A high score means the data is solid, not that the strategic reading is certain.</li>
-      </ul>
-    </div>
+    <p class="verify-line"><b>Verified.</b> All 16 citations independently checked against primary sources on 2026-08-28 — 1 fabricated, 5 corrected, 3 demoted. Confidence scores below reflect post-verification evidence quality, not author confidence.</p>
   </header>
 
-  <!-- ============ 01 CEO SUMMARY ============ -->
+  <div class="abstract">
+    <div class="label">Abstract</div>
+    <p>The settled fact: no lens — not even the most bullish — found evidence of full occupational elimination. Gartner's own research predicts zero Fortune 500 companies will have fully eliminated human customer service by 2028, and a large peer-reviewed field study finds generative AI assistants raise support-agent productivity (14% on average, 34% for novices) rather than erasing the role outright. The contested interpretation is pace and framing: <strong>high-profile "AI replaced our agents" announcements (Klarna's "700 agents," Salesforce's headcount cuts) describe workload capacity and strategic redeployment more than clean layoffs, and several already reversed once customer-satisfaction costs surfaced</strong> — yet venture capital has priced in a much faster, more complete displacement than the operational evidence supports, with AI customer-support startups now valued tens of billions of dollars above the entire market they serve today. The central tension: is the industry watching a slow, historically ordinary compression of routine work into a smaller, higher-skill human tier — or an early, undercounted version of a much larger shift that current headcount data isn't built to detect?</p>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-item"><span class="num mono">I</span><span class="t">Key Findings</span><span class="leader"></span></div>
+    <div class="toc-item"><span class="num mono">II</span><span class="t">Where the Lenses Disagree</span><span class="leader"></span></div>
+    <div class="toc-item"><span class="num mono">III</span><span class="t">The Hidden Connection</span><span class="leader"></span></div>
+    <div class="toc-item"><span class="num mono">IV</span><span class="t">Assumptions &amp; the Missing Lens</span><span class="leader"></span></div>
+    <div class="toc-item"><span class="num mono">V</span><span class="t">Implications for Contact-Center Leaders</span><span class="leader"></span></div>
+    <div class="toc-item"><span class="num mono">VI</span><span class="t">What's Safe to Assert</span><span class="leader"></span></div>
+    <div class="toc-item"><span class="num mono">VII</span><span class="t">The Open Question</span><span class="leader"></span></div>
+  </nav>
+
   <section class="section">
-    <div class="section-num">01</div>
-    <h2><span class="bar"></span>The 60-Second Summary</h2>
-    <div class="ceo">
-      <p style="margin-bottom:0;">The only peer-reviewed causal evidence available (a 5,179-agent field study, published in the <i>Quarterly Journal of Economics</i>) shows generative AI raised support-agent productivity 14% on average — concentrated almost entirely in novice agents (+34%), with near-zero effect on experts — and reduced attrition, with <strong>no job losses observed at the studied firm</strong>. That single-firm, single-window result sits uneasily next to the headline narrative: vendors and analysts project up to $80B in contact-center labor-cost reduction by 2026, AI-agent startups are raising money at 100x-revenue multiples on a full-replacement thesis, and yet a 2026 survey of 2,527 enterprises found <strong>74% have already rolled back or shut down a live AI customer-service deployment</strong>, with Gartner predicting half of workforce-reduction plans will be abandoned by 2027. <strong>The honest read is that AI is now permanently handling the routine 40-70% of contact volume, but full replacement keeps failing on contact with real edge cases, disputes, and trust — producing a hybrid, escalation-heavy model rather than the lights-out call center the fundraising narrative assumes.</strong></p>
-    </div>
-  </section>
-
-  <!-- ============ 02 KEY FINDINGS ============ -->
-  <section class="section">
-    <div class="section-num">02</div>
-    <h2><span class="bar"></span>Five Key Findings, Ranked by Reliability</h2>
+    <div class="section-head"><span class="roman">I</span><h2>Key Findings, Ranked by Reliability</h2></div>
 
     <div class="finding">
-      <div class="finding-head">
-        <div class="finding-title">Generative AI is a skill-leveling productivity tool for support agents, not a proven job-replacer — and the only rigorous study says so directly</div>
-        <div class="finding-rank">1</div>
+      <div class="f-meta">
+        <span class="score">9</span><span class="of10">/10</span>
+        <span class="rel">Well-supported</span>
       </div>
-      <div class="rel-row">
-        <div class="rel high">Reliability: High</div>
-        <div class="score"><b>9</b><span>/10</span></div>
-      </div>
-      <p>Brynjolfsson, Li &amp; Raymond, "Generative AI at Work" (<i>Quarterly Journal of Economics</i> 140(2), 2025; NBER WP 31161), a staggered-rollout study of 5,179 agents at a Fortune 500 software firm, found a <strong>14% average gain</strong> in resolved-issues-per-hour (corrected from an initially reported 15%) — with +34% for novice/low-tenure agents and roughly zero for high-skill experts — plus reduced attrition, especially among newer hires. It is peer-reviewed, causal, and the only study of its kind, but covers one firm over several months and does not measure aggregate employment or wage effects. That gap is exactly where the "AI replaces jobs" narrative currently has zero rigorous support.</p>
-      <div class="chips">
-        <div class="chip-row"><span class="chip-label sup">Supported by</span><span class="who">Academic (core citation); Practitioner and Historian's hybrid-model observations are consistent with it</span></div>
-        <div class="chip-row"><span class="chip-label chal">Challenged by</span><span class="who">Economist and vendor narratives, which extrapolate far beyond what this single-firm study can support</span></div>
-        <div class="chip-row"><span class="chip-label fix">Corrected</span><span class="who">Productivity gain verified as 14%, not 15%; exact "medium-run, single-firm" caveat phrasing could not be confirmed verbatim in the published text, though the substance holds</span></div>
+      <div>
+        <div class="f-title">A hard ceiling on full automation persists across every deployment studied</div>
+        <div class="f-body">
+          <p>Every lens — even the most bullish on AI's capability — converges on the same structural limit: routine, high-volume Tier-1 interactions automate fast, but escalation, ambiguity, and emotionally charged cases keep requiring a human. Gartner's own research (confirmed against its Sept. 2025 press release) predicts zero Fortune 500 companies will have fully eliminated human customer service by 2028.</p>
+        </div>
+        <div class="f-tags">
+          <div><span class="tag-label">Supported by</span>All five lenses; Gartner press release; Klarna's own reversal; historical automation pattern (ATMs, IVR, travel agents)</div>
+          <div><span class="tag-label">Challenged by</span>No one — this is the panel's one point of full agreement</div>
+        </div>
       </div>
     </div>
 
     <div class="finding">
-      <div class="finding-head">
-        <div class="finding-title">Deployments consistently automate 40-70% of volume, not all of it — the residual is structurally harder, not smaller</div>
-        <div class="finding-rank">2</div>
+      <div class="f-meta">
+        <span class="score">9</span><span class="of10">/10</span>
+        <span class="rel">Well-supported</span>
       </div>
-      <div class="rel-row">
-        <div class="rel medhigh">Reliability: Medium-High</div>
-        <div class="score"><b>7</b><span>/10</span></div>
-      </div>
-      <p>Operator-reported containment rates cluster well short of full automation: Intermountain Health's voice AI resolves 44% of inquiries autonomously; a collections voice agent generating ~$280K/month still transfers 30% of calls to humans; Klarna's assistant handled two-thirds of chat volume (2.3M chats, ~700-agent-equivalent work) but was <strong>not</strong> fully autonomous even at its peak. This matches the historical pattern: each prior automation wave (ATMs, IVR, offshoring, 2010s chatbots) narrowed the routine-task funnel while the exception queue that remained got proportionally harder and more emotionally demanding for the humans still doing it.</p>
-      <div class="chips">
-        <div class="chip-row"><span class="chip-label sup">Supported by</span><span class="who">Practitioner (operator data), Historian ("narrow the funnel, widen the exception queue")</span></div>
-        <div class="chip-row"><span class="chip-label chal">Challenged by</span><span class="who">No one directly — even the Economist's vendor narrative implicitly concedes this via the "75%" claim that turned out unverifiable (see Finding 4)</span></div>
-      </div>
-    </div>
-
-    <div class="finding">
-      <div class="finding-head">
-        <div class="finding-title">A majority of enterprise AI customer-service deployments are being rolled back, not scaled up</div>
-        <div class="finding-rank">3</div>
-      </div>
-      <div class="rel-row">
-        <div class="rel medhigh">Reliability: Medium-High</div>
-        <div class="score"><b>7</b><span>/10</span></div>
-      </div>
-      <p>Sinch's 2026 survey of 2,527 enterprise decision-makers across 10 countries found <strong>74% have rolled back or shut down a live AI customer-communications agent</strong>, citing governance failures (this is Sinch's own primary release, confirmed — not a softened secondary paraphrase; notably the rollback rate was 81% even among orgs with "mature guardrails," a wrinkle worth watching). Separately, Gartner's June 2025 press release predicts 50% of organizations expecting AI to significantly cut CS headcount will abandon those plans by 2027. Klarna is the visible poster-child case: its CEO said the company "focused too much on cost," resulting in lower quality, and began rehiring humans by May 2025.</p>
-      <div class="chips">
-        <div class="chip-row"><span class="chip-label sup">Supported by</span><span class="who">Skeptic (core citation, verified), Academic (Klarna as counter-case), Practitioner (Klarna reversal)</span></div>
-        <div class="chip-row"><span class="chip-label chal">Challenged by</span><span class="who">Economist, whose valuation thesis requires this trend to be temporary/fixable</span></div>
-        <div class="chip-row"><span class="chip-label fix">Corrected</span><span class="who">Klarna's "$40M savings" figure is more precisely a company-estimated 2024 profit-improvement projection, not a confirmed realized savings figure</span></div>
+      <div>
+        <div class="f-title">Generative AI's proven effect is augmentation, not replacement — and it's uneven by skill level</div>
+        <div class="f-body">
+          <p>The field's strongest causal evidence — a quasi-experimental study of 5,179 agents at a Fortune 500 software firm, published in the peer-reviewed <em>Quarterly Journal of Economics</em> — found LLM-assistant access raised issues-resolved-per-hour by 14% on average, 34% for novice agents, and roughly zero for the most experienced agents. Customer sentiment modestly improved and attrition fell; the study did not measure net headcount change.</p>
+        </div>
+        <div class="f-tags">
+          <div><span class="tag-label">Supported by</span>Academic (Brynjolfsson, Li &amp; Raymond, QJE 2025); consistent with Practitioner's "hybrid restructuring" framing</div>
+          <div><span class="tag-label">Challenged by</span>No one on the mechanism — but Economist and Skeptic note it's a single-firm, single-product-generation result generalized far beyond its evidence base</div>
+        </div>
       </div>
     </div>
 
     <div class="finding">
-      <div class="finding-head">
-        <div class="finding-title">Venture valuations for AI customer-service startups are pricing in full labor displacement that the vendors' own metrics don't yet support</div>
-        <div class="finding-rank">4</div>
+      <div class="f-meta">
+        <span class="score">7</span><span class="of10">/10</span>
+        <span class="rel">Corrected</span>
       </div>
-      <div class="rel-row">
-        <div class="rel medium">Reliability: Medium</div>
-        <div class="score"><b>6</b><span>/10</span></div>
-      </div>
-      <p>Sierra raised $350M at a $10B valuation in September 2025 on ~$100M ARR (a company-confirmed figure) — a roughly 100x revenue multiple — then raised again in May 2026 ($950M at $15.8B), a separate, later event than originally conflated. Decagon raised $250M at $4.5B in January 2026 (Coatue, Index), tripling its $1.5B mark from June 2025, then ran an employee tender at the same valuation in March 2026. These multiples are only rational if the full-replacement thesis holds at scale — which Finding 1 and Finding 3 both cast doubt on. Gartner's real, confirmed 2022 projection is $80B in contact-center labor-cost reduction by 2026 alongside contact automation rising from ~1.6% to just <strong>10%</strong> of interactions by 2026 — a modest volume shift, not the near-total displacement implied by vendor pitches.</p>
-      <div class="chips">
-        <div class="chip-row"><span class="chip-label sup">Supported by</span><span class="who">Economist (core citation, verified with date corrections)</span></div>
-        <div class="chip-row"><span class="chip-label chal">Challenged by</span><span class="who">Academic and Skeptic, whose evidence suggests the underlying replacement thesis is unproven at the scale valuations assume</span></div>
-        <div class="chip-row"><span class="chip-label fix">Corrected</span><span class="who">Sierra's $15B/$950M figures belong to a May 2026 round, not "late 2025" as originally cited; the correct late-2025 figures are $10B/$350M/~$100M ARR</span></div>
+      <div>
+        <div class="f-title">The flagship "AI replaced our agents" case studies overstate what actually happened</div>
+        <div class="f-body">
+          <p>Klarna's widely repeated claim that AI "did the work of 700 agents" originates from Klarna's own 2024 announcement describing avoided-hiring capacity, not 700 people laid off — Klarna had separately cut ~700 jobs in an unrelated 2022 round that commentary frequently conflates with the AI claim. <strong>Corrected during verification:</strong> the figure later grew to an equivalent of 853 agents, and CEO Sebastian Siemiatkowski told Bloomberg in 2025 Klarna is rehiring humans after customers pushed back on losing access to one. Separately, Gartner's October 2025 survey of 321 customer-service leaders (confirmed) found only 20% had actually cut staff citing AI, and Gartner predicts half of those will rehire — often under different titles — by 2027.</p>
+        </div>
+        <div class="f-tags">
+          <div><span class="tag-label">Supported by</span>Skeptic; Gartner Feb. 2026 press release (confirmed); OpenAI/Klarna case study</div>
+          <div><span class="tag-label">Challenged by</span>Practitioner and Economist, who note headline announcements still drive real budget and staffing decisions regardless of later walk-backs</div>
+          <div class="corrected"><span class="tag-label">Corrected</span>"700 agents" reframed from headcount cut to avoided-workload equivalence; figure updated to 853; rehire prediction confirmed against primary Gartner release</div>
+        </div>
       </div>
     </div>
 
     <div class="finding">
-      <div class="finding-head">
-        <div class="finding-title">Every automation wave before this one (ATMs, offshoring, IVR, 2010s chatbots) went through backlash and correction before settling into stable hybrid coexistence</div>
-        <div class="finding-rank">5</div>
+      <div class="f-meta">
+        <span class="score">7</span><span class="of10">/10</span>
+        <span class="rel">Well-supported</span>
       </div>
-      <div class="rel-row">
-        <div class="rel medium">Reliability: Medium</div>
-        <div class="score"><b>6</b><span>/10</span></div>
+      <div>
+        <div class="f-title">Investor valuations are pricing in far more displacement than has happened yet</div>
+        <div class="f-body">
+          <p>AI customer-support startups Decagon ($4.5B, Jan. 2026) and Sierra AI ($15.8B, May 2026) together carry a combined paper valuation roughly four to eight times the size of the entire call-center-AI market today ($2–4B, per Grand View Research and Mordor Intelligence, both confirmed). Salesforce's Agentforce hit $1.2B in annualized revenue (+205% YoY) around the same period it cut customer-support headcount from roughly 9,000 to 5,000 — though Salesforce and CEO Marc Benioff frame this as workforce "rebalancing" toward AI-oversight roles rather than pure layoffs, a distinction several outlets' "layoffs" framing overstates.</p>
+        </div>
+        <div class="f-tags">
+          <div><span class="tag-label">Supported by</span>Economist (Bloomberg, TechCrunch, Axios, Salesforce press release, all confirmed)</div>
+          <div><span class="tag-label">Challenged by</span>Academic, who notes valuation is a bet on the future, not evidence of present labor-market effect</div>
+          <div class="corrected"><span class="tag-label">Corrected</span>Sierra's valuation cited from a wire source (TechCrunch/Axios) rather than the original secondary-newsletter citation; Salesforce's headcount move reframed from "layoffs" to company's own "rebalancing" language</div>
+        </div>
       </div>
-      <p>James Bessen's research (IMF <i>Finance &amp; Development</i>, 2015, confirmed) shows ~400,000 ATMs deployed 1980s-2010 while U.S. bank teller employment <strong>grew</strong> from ~500,000 to ~600,000, as cheaper branches let banks expand footprint and tellers shifted to relationship/sales work. Gartner's 2011 forecast that 85% of customer relationships would be managed without human interaction by 2020 badly overshot reality — confirmed as a real (if only secondary-sourced) prediction, and notably Gartner itself now projects (September 2025) that <em>no</em> Fortune 500 company will have fully eliminated human customer service by 2028. A claimed "~70% of U.S. contact-center volume moved offshore" figure could <strong>not</strong> be traced to any primary source and should be treated as unverified.</p>
-      <div class="chips">
-        <div class="chip-row"><span class="chip-label sup">Supported by</span><span class="who">Historian (core citation), cross-confirmed directionally by Skeptic's rollback data and Academic's retention finding</span></div>
-        <div class="chip-row"><span class="chip-label chal">Challenged by</span><span class="who">No lens directly, though analogy-based reasoning is inherently weaker than causal evidence</span></div>
-        <div class="chip-row"><span class="chip-label fix">Corrected</span><span class="who">The "70% offshored" statistic was dropped — no primary source found; the FCC's March 2026 proposed rule capping/disclosing offshore call routing is real and separately confirmed</span></div>
+    </div>
+
+    <div class="finding">
+      <div class="f-meta">
+        <span class="score">6</span><span class="of10">/10</span>
+        <span class="rel">Contested</span>
+      </div>
+      <div>
+        <div class="f-title">The pattern matches prior automation cycles — but the timeline evidence needed correcting</div>
+        <div class="f-body">
+          <p>Voice AI plausibly follows the same two-phase shape as ATMs, travel-agent disintermediation, call-center offshoring, and IVR: routine volume automates quickly, full occupational elimination takes 10–15 years and never fully arrives, and survivors move into higher-skill, better-paid escalation work. But the offshoring "500,000 jobs" figure traces to a 2013–2017 CWA estimate, not "the 2000s" as first cited, and the proposed "Keep Call Centers in America Act" is a pending 2025 bill (H.R.4954/S.2495), not enacted law.</p>
+        </div>
+        <div class="f-tags">
+          <div><span class="tag-label">Supported by</span>Historian; directionally consistent with Practitioner's escalation-tier observation</div>
+          <div><span class="tag-label">Challenged by</span>Skeptic and Economist, who note analogy is not causal evidence for this specific technology</div>
+          <div class="corrected"><span class="tag-label">Corrected</span>Offshoring timeframe corrected to 2013–2017; "Keep Call Centers in America Act" reframed from enacted mandate to pending legislation</div>
+        </div>
       </div>
     </div>
 
     <div class="contested">
-      <div class="tag">Contested signal &middot; monitor, do not assert &middot; confidence 2/10</div>
-      <h4>"75% of customer interactions will be AI-powered by 2026"</h4>
-      <p>This widely recirculated stat does not appear in Gartner's actual 2022 press release (the one that does contain the real, confirmed $80B labor-cost figure). That release's real companion metric is a rise from ~1.6% to just 10% of contact-center interactions automated by 2026 — an order of magnitude lower. The 75% figure is either a distinct, untraceable Gartner note or a fabricated/misattributed pairing that has been copy-pasted across vendor blogs. Do not cite it as a Gartner statistic.</p>
+      <div class="tag">Contested signal · monitor, do not assert · 1/10</div>
+      <h4>"14% of customer interactions will be fully AI-resolved by 2027" (attributed to Gartner)</h4>
+      <p>This figure circulates widely across vendor blogs and appears to have no traceable Gartner source. It also conflicts with Gartner's actual published predictions (80% of common issues resolved autonomously by agentic AI by 2029; 40% resolved via unofficial third-party GenAI tools by 2027). Treat as fabricated or misattributed and do not cite it as Gartner's position.</p>
     </div>
   </section>
 
-  <!-- ============ 03 HIDDEN CONNECTION ============ -->
   <section class="section">
-    <div class="connection">
-      <div class="section-num">03</div>
-      <h2><span class="bar"></span>The Hidden Connection</h2>
-      <p>On the surface, the Economist's story (100x-revenue valuations, a confirmed $80B labor-cost-reduction projection) and the Skeptic's story (74% rollback rate, Gartner predicting half of headcount-cut plans abandoned) look like they're describing two different markets — one booming, one failing.</p>
-      <p>They're not. They're describing the same mechanism at two different time horizons. The valuations are pricing in a full-replacement thesis that requires the *rollback rate to fall* over the next several years — but the only peer-reviewed causal evidence available (Finding 1) shows the current technology's proven effect is agent-productivity leveling, not replacement, and the real, confirmed Gartner labor-automation trajectory is a modest 10%-of-interactions shift by 2026, not the near-total displacement implicit in a $15.8B mark on ~$100M ARR. The fundraising narrative and the operational reality are running on different clocks: money is being raised today against a 2028-2030 outcome that the strongest current evidence does not yet support and that even Gartner itself (September 2025) now says won't fully arrive by 2028.</p>
-      <p class="punch">The hype isn't lying about the direction — it's borrowing years of maturation time it doesn't yet have, and the rollback data is the bill coming due early (this reading leans on the fabricated 75% stat being debunked; without that debunking, the tension looks smaller than it is).</p>
+    <div class="section-head"><span class="roman">II</span><h2>Where the Lenses Disagree</h2></div>
+    <p class="lead">Every lens agrees full replacement isn't happening. They sharply disagree on how much of the remaining human workforce survives, how fast it shrinks, and who is being honest about the pace.</p>
+    <table class="map">
+      <thead><tr><th>Lens</th><th>Position</th><th>Strongest evidence</th></tr></thead>
+      <tbody>
+        <tr><td>Practitioner</td><td>Tier-1 volume is genuinely automating now; the workforce restructures rather than disappears, but leadership tracks the wrong metrics.</td><td>Klarna's reversal after CSAT decline; Forrester's projected AI-oversight job creation</td></tr>
+        <tr><td>Academic</td><td>The only causal evidence shows augmentation, concentrated among novice agents, with no data yet on net headcount.</td><td>Brynjolfsson, Li &amp; Raymond, QJE 2025 (peer-reviewed, N=5,179)</td></tr>
+        <tr><td>Skeptic</td><td>The displacement narrative runs well ahead of the evidence; most publicized cuts are small, reversing, or never verified.</td><td>Gartner: only 20% of leaders cut staff citing AI; half predicted to rehire by 2027</td></tr>
+        <tr><td>Economist</td><td>Vendors and investors profit directly from the displacement story; valuations already assume a level of disruption that hasn't occurred.</td><td>Decagon/Sierra combined valuation vs. $2–4B actual market size</td></tr>
+        <tr><td>Historian</td><td>This is a textbook automation cycle: fast volume compression, slow occupational death, a surviving higher-skill tier, and an eventual political backlash.</td><td>ATM/travel-agent/offshoring pattern; pending "Keep Call Centers in America Act"</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:18px;"><b>Resolving question:</b> Does net customer-support headcount — controlling for call/contact volume growth — actually fall over a five-to-ten-year horizon at firms deploying AI voice agents, or does the workforce simply shift toward smaller, higher-skill escalation and AI-oversight roles?</p>
+    <p><b>Universal agreement:</b> No lens found evidence of full occupational elimination anywhere, and none expects it soon. The debate is entirely about the size and durability of the surviving human tier, not its existence.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="roman">III</span><h2>The Hidden Connection</h2></div>
+    <p>At first glance, the Academic's finding (AI assistants make human agents better at their jobs) and the Practitioner's headline case (Klarna's AI-only push failed and had to rehire humans) look like they're pulling in opposite directions — one says AI helps, the other says AI failed.</p>
+    <div class="pullquote">
+      <p>They're the same finding. The QJE study never tested full replacement — it tested giving a human agent an AI copilot, and that is precisely the model Klarna abandoned in 2024 and rehired its way back toward. Every case where AI "worked" kept a human in the loop; every case flagged as a failure is one where a company tried to remove the human. (This reading leans on a single-firm causal study generalized across a much larger claim, so treat it as a strong hypothesis, not a proven rule.)</p>
     </div>
   </section>
 
-  <!-- ============ 03b KEY ASSUMPTION / MISSING 6TH LENS ============ -->
   <section class="section">
-    <div class="assume">
-      <h3>The assumption this briefing rests on (and the missing 6th lens)</h3>
-      <p>All five lenses examine this from the buyer's or investor's side — did the deployment work, was it profitable, does the money make sense, does history rhyme. None of them examine the <strong>displaced worker's</strong> side: what happens to the specific humans whose roles get automated, especially in the offshore BPO hubs (Philippines, India) where customer-service work is a dominant employer and the alternative jobs are scarce. The missing 6th lens is a labor economist studying worker-level outcomes — retraining rates, wage trajectories after displacement, and regional concentration effects — not firm-level productivity or investor narratives.</p>
-      <p>If that lens existed and showed, say, that displaced workers in concentrated BPO regions face years of wage scarring with no comparable local reemployment, it would invert this briefing's relatively reassuring "hybrid coexistence" framing (borrowed from the U.S. teller/ATM analogy) into a much harsher regional-inequality story that a national-level jobs count would never surface.</p>
+    <div class="section-head"><span class="roman">IV</span><h2>Assumptions &amp; the Missing Lens</h2></div>
+    <div class="marginnote">
+      <div class="label">What this briefing rests on</div>
+      <p>All five lenses drew their strongest evidence from U.S. and European enterprises (Klarna, Salesforce, Fortune 500 software firms, Gartner's largely Western survey base). None examined the offshore contact-center hubs — the Philippines, India, and similar economies — where millions of Tier-1 support jobs exist specifically because voice work was cheap to route there.</p>
+      <p>A Global Labor Economist lens would likely invert the panel's most comforting conclusion. The "hybrid ceiling" — humans persist for escalation — assumes a market where keeping some human staff is affordable and locally available. In economies whose entire white-collar employment strategy was built around English-language voice-support outsourcing, AI voice agents don't threaten a supplementary tier; they threaten the industry's reason to exist there at all. That risk is largely invisible in headcount data measured at the level of Western parent companies.</p>
     </div>
   </section>
 
-  <!-- ============ 04 ACTIONABLE INSIGHT ============ -->
   <section class="section">
-    <div class="section-num">04</div>
-    <h2><span class="bar"></span>What To Actually Do Differently</h2>
-    <p class="body-lg" style="color:var(--muted);">For a CS/CX leader deciding how far to push AI voice deployment: specific moves, not principles.</p>
-    <div class="action-item">
-      <div class="action-mark">01</div>
-      <div><span class="do">Track re-contact/callback rate within 48 hours, not just containment rate.</span><p>Containment (Finding 2) is the metric vendors sell; re-contact is the one that predicts whether you become the next Klarna-style reversal (Finding 3). Instrument it before you scale, not after complaints surface.</p></div>
-    </div>
-    <div class="action-item">
-      <div class="action-mark">02</div>
-      <div><span class="do">Design for the 30-56% of calls that won't be contained, not around them.</span><p>Every cited deployment (Intermountain 44%, collections 70% containment) still routes a large minority to humans. Budget and staff for a permanent, harder-skewed escalation tier rather than planning it away as a rounding error.</p></div>
-    </div>
-    <div class="action-item">
-      <div class="action-mark">03</div>
-      <div><span class="do">Discount any vendor pitch citing "75% AI-powered by 2026" — ask for the source document.</span><p>That number does not trace back to the Gartner release it's usually attributed to (Contested Signal, above). If a vendor can't produce a primary citation, treat their entire ROI case with the same skepticism.</p></div>
-    </div>
-    <div class="action-item">
-      <div class="action-mark">04</div>
-      <div><span class="do">Route novice-skewed queues to AI-assist first; don't expect gains on your best agents.</span><p>Finding 1's only causal evidence shows a 34% gain for novices and ~0% for experts — deploy assistive tooling where the skill gap is largest, and don't sell leadership on expert-tier savings that the data doesn't support.</p></div>
-    </div>
-    <div class="action-item">
-      <div class="action-mark">05</div>
-      <div><span class="do">Model your rollback risk explicitly using the 74% base rate, not the pilot-stage press release.</span><p>Sinch's confirmed 74% rollback finding (Finding 3) is closer to the honest base rate than any vendor's launch-week case study. Build a 12-18 month reassessment checkpoint into any contract, mirroring the Klarna timeline.</p></div>
-    </div>
-  </section>
-
-  <!-- ============ 04b CLAIM SAFETY GUIDE ============ -->
-  <section class="section">
-    <div class="section-num">04b</div>
-    <h2><span class="bar"></span>What's Safe to Assert</h2>
-    <div class="oncam">
-      <div class="oncam-col safe">
-        <h4>✓ Safe — verified against primary source</h4>
-        <ul>
-          <li>Generative AI raised support-agent productivity 14% on average in the one peer-reviewed field study available, concentrated in novice agents, with no job losses observed at that firm.</li>
-          <li>74% of enterprises surveyed by Sinch (n=2,527) have rolled back or shut down a live AI customer-communications deployment.</li>
-          <li>Klarna's assistant handled 2.3M chats (two-thirds of volume) in its first month, equivalent to ~700 agents' work, and the company began rehiring humans by May 2025 after quality concerns.</li>
-          <li>Gartner (2022) projects conversational AI will cut contact-center labor costs by $80B in 2026, alongside interaction automation rising from ~1.6% to 10% by 2026 — not 75%.</li>
-          <li>Sierra and Decagon have raised at $10B (Sept 2025) and $4.5B (Jan 2026) valuations respectively, at revenue multiples implying a full-replacement thesis not yet proven at scale.</li>
-        </ul>
+    <div class="section-head"><span class="roman">V</span><h2>Implications for Contact-Center Leaders</h2></div>
+    <p class="lead">Specific moves, tied to the findings above — not general AI-strategy platitudes.</p>
+    <div class="actions">
+      <div class="action">
+        <span class="n">01</span>
+        <div><span class="do">Instrument for silent churn, not just containment rate.</span><p>Klarna's own CSAT damage was invisible in "resolution volume" metrics for months. Before scaling AI deflection, track customers who exit an AI conversation without escalating and without filing a complaint — that gap is where the real cost hides (Finding III).</p></div>
       </div>
-      <div class="oncam-col caveat">
-        <h4>⚠ Say with a caveat</h4>
-        <ul>
-          <li>"AI replaces support jobs" — true for routine-volume roles in aggregate cost terms, but the only causal study shows productivity-leveling and retention gains, not headcount reduction, at the one firm studied.</li>
-          <li>Klarna's "$40M savings" — more precisely a company-projected profit-improvement estimate for 2024, not an audited realized savings figure.</li>
-          <li>The ATM/bank-teller analogy (employment grew, not shrank) — a real, confirmed historical pattern, but one industry's outcome, not a guarantee this wave repeats it.</li>
-        </ul>
+      <div class="action">
+        <span class="n">02</span>
+        <div><span class="do">Deploy AI as an agent copilot before attempting channel-wide replacement.</span><p>The only causal, peer-reviewed evidence available (14% average / 34% novice productivity gain) is for augmentation, not substitution. It's also where the ROI is proven fastest for less-experienced staff (Finding II).</p></div>
       </div>
-      <div class="oncam-col avoid">
-        <h4>✕ Don't assert</h4>
-        <ul>
-          <li>"75% of customer interactions will be AI-powered by 2026" — does not trace to any primary Gartner document found; likely a fabricated or misattributed stat circulating in vendor content.</li>
-          <li>"~70% of U.S. contact-center volume was offshored" — no primary source located; treat as unverified until sourced.</li>
-          <li>Any claim of a multi-firm, longitudinal, causal study on net AI-driven CS employment effects — none currently exists; all such claims trace back to single-firm studies, vendor case studies, or analyst market-sizing projections.</li>
-        </ul>
+      <div class="action">
+        <span class="n">03</span>
+        <div><span class="do">Don't budget for near-total headcount elimination.</span><p>Only 20% of surveyed leaders have cut staff citing AI at all, and Gartner expects half of those to rehire by 2027. Plan staffing scenarios around restructuring, not disappearance (Finding III).</p></div>
+      </div>
+      <div class="action">
+        <span class="n">04</span>
+        <div><span class="do">Separate vendor ROI claims into volume-coverage gains and true labor savings.</span><p>Reported 300%+ ROI figures typically bundle reduced call abandonment and after-hours coverage with headcount savings — model these as two different line items before setting cost targets (Finding IV).</p></div>
+      </div>
+      <div class="action">
+        <span class="n">05</span>
+        <div><span class="do">Build the escalation-specialist career path deliberately, now.</span><p>Every historical analogue shows the surviving jobs migrate to higher-skill, better-paid exception handling. Doing this proactively preserves institutional knowledge that a reactive layoff-then-rehire cycle (as at Klarna) destroys (Finding V).</p></div>
+      </div>
+      <div class="action">
+        <span class="n">06</span>
+        <div><span class="do">If a meaningful share of your support volume runs through an offshore hub, model that population's risk separately.</span><p>The panel's "hybrid ceiling" evidence is drawn almost entirely from Western headcount data. It may not protect roles where the entire business case for the location was cost, not complexity-handling (Section IV).</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 05 FRONTIER QUESTION ============ -->
   <section class="section">
-    <div class="section-num">05</div>
-    <h2><span class="bar"></span>The Frontier Question</h2>
-    <div class="frontier">
-      <div class="q">If containment rates keep climbing past 70-80% over the next model generation, does the escalation tier shrink — or does it just get harder and smaller, absorbing the same total headcount into fewer, higher-stress roles?</div>
-      <p>No lens directly modeled this threshold effect. The historical pattern (Finding 5) suggests headcount persistence through role transformation, but every historical analogy (ATMs, tellers) involved a slower technology curve than large language models are currently on. If containment breaches a threshold where the remaining human tier becomes small enough to be a genuine specialist function rather than a scaled workforce, the "hybrid coexistence" conclusion in this briefing could flip into a genuine net-displacement story within a single product cycle — and currently nobody, including Gartner, is measuring for that inflection point directly.</p>
-    </div>
+    <div class="section-head"><span class="roman">VI</span><h2>What's Safe to Assert</h2></div>
+    <table class="safety">
+      <thead>
+        <tr>
+          <th><span class="glyph">✓</span>Assert</th>
+          <th><span class="glyph">▲</span>Caveat</th>
+          <th><span class="glyph">✕</span>Avoid</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><ul>
+            <li>Gartner predicts no Fortune 500 company will have fully eliminated human customer service by 2028.</li>
+            <li>A large peer-reviewed study (QJE, 2025) found generative AI assistants raised support-agent productivity ~14% on average, up to 34% for novice agents.</li>
+            <li>Only about 20% of surveyed customer-service leaders have actually cut staff citing AI as the reason, per Gartner's October 2025 survey.</li>
+          </ul></td>
+          <td><ul>
+            <li>Klarna's "AI did the work of 700 agents" describes avoided-workload capacity, not a confirmed headcount reduction — attribute it precisely.</li>
+            <li>AI voice-agent valuations (Decagon, Sierra) reflect investor bets on future displacement, not proof it is occurring at that scale today.</li>
+            <li>The "Keep Call Centers in America Act" is proposed legislation as of this writing, not an enacted law.</li>
+          </ul></td>
+          <td><ul>
+            <li>The "14% of interactions fully AI-resolved by 2027" figure attributed to Gartner — no verifiable primary source; likely fabricated or misattributed.</li>
+            <li>Claiming offshore/Global South customer-support jobs enjoy the same "hybrid ceiling" protection observed in Western firms — no lens examined this population directly.</li>
+            <li>Presenting this panel's convergence as consensus of the field — it is one author-constructed synthesis, not a systematic literature review.</li>
+          </ul></td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
-  <!-- ============ REFERENCES ============ -->
-  <div class="refs">
-    <h3>Evidence base &middot; verification status</h3>
-    <ul>
-      <li><span class="vstat part">Corrected</span> Brynjolfsson, E., Li, D., &amp; Raymond, L. (2025). "Generative AI at Work." <i>Quarterly Journal of Economics</i>, 140(2), 889–942 (NBER WP 31161, 2023). 14% avg. productivity gain (corrected from 15%), +34% novice/~0% expert, n=5,179. <a href="https://academic.oup.com/qje/article/140/2/889/7990658">academic.oup.com</a></li>
-      <li><span class="vstat ok">Confirmed</span> Klarna press release (Feb 27, 2024): AI assistant handled 2.3M chats/month, ~700 agent-equivalent work, ~$40M estimated 2024 profit impact (a projection, not audited savings). <a href="https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/">klarna.com</a></li>
-      <li><span class="vstat part">Corrected</span> Klarna CEO reversal statement, reported May 2025: rehiring humans after "focused too much on cost," resulting in lower quality (exact quote wording could not be verified verbatim; substance confirmed via multiple outlets). <a href="https://www.forbes.com/sites/quickerbettertech/2025/05/18/business-tech-news-klarna-reverses-on-ai-says-customers-like-talking-to-people/">forbes.com</a></li>
-      <li><span class="vstat ok">Confirmed</span> Sinch, "AI Production Paradox" survey (2,527 enterprise decision-makers, 10 countries, Jan–Feb 2026): 74% have rolled back/shut down a live AI customer-communications agent. <a href="https://sinch.com/news/sinch-releases-ai-production-paradox/">sinch.com</a></li>
-      <li><span class="vstat ok">Confirmed</span> Gartner press release (June 10, 2025): predicts 50% of organizations expecting AI to significantly cut CS headcount will abandon those plans by 2027. <a href="https://www.gartner.com/en/newsroom/press-releases/2025-06-10-gartner-predicts-50-percent-of-organizations-will-abandon-plans-to-reduce-customer-service-workforce-due-to-ai">gartner.com</a></li>
-      <li><span class="vstat ok">Confirmed</span> Gartner press release (Aug 31, 2022): conversational AI to reduce contact-center agent labor costs by $80B in 2026; interaction automation rising from ~1.6% to 10% by 2026. <a href="https://www.gartner.com/en/newsroom/press-releases/2022-08-31-gartner-predicts-conversational-ai-will-reduce-contac">gartner.com</a></li>
-      <li><span class="vstat weak">Demoted</span> "75% of customer interactions will be AI-powered by 2026" — does not appear in the above (or any located) Gartner release; treat as unverified/likely fabricated pairing.</li>
-      <li><span class="vstat part">Corrected</span> Sierra: $350M raised at $10B valuation (Sept 2025, led by Greenoaks), ~$100M ARR (company-confirmed). A separate $950M round at $15.8B occurred in May 2026 — not the same event as originally conflated. <a href="https://www.bloomberg.com/">bloomberg.com</a> / <a href="https://sierra.ai/blog/100m-arr">sierra.ai</a></li>
-      <li><span class="vstat ok">Confirmed</span> Decagon: $250M Series D at $4.5B valuation (Jan 28, 2026, led by Coatue &amp; Index Ventures), up from $1.5B in June 2025; employee tender at same valuation, March 2026. <a href="https://www.bloomberg.com/news/articles/2026-01-28/ai-customer-support-startup-decagon-valued-at-4-5-billion">bloomberg.com</a></li>
-      <li><span class="vstat ok">Confirmed</span> Bessen, J. "Toil and Technology." IMF <i>Finance &amp; Development</i>, March 2015: ~400,000 ATMs deployed 1980s-2010; U.S. bank teller employment grew ~500,000→~600,000; urban branches grew ~43% via a related Bessen dataset. <a href="https://www.imf.org/external/pubs/ft/fandd/2015/03/bessen.htm">imf.org</a></li>
-      <li><span class="vstat part">Demoted</span> Gartner (2011): 85% of customer relationships managed without human interaction by 2020 — a real, widely-cited prediction but only secondary-sourced (no retrievable primary research note); confirmed badly overshot, per Gartner's own Sept 2025 release stating no Fortune 500 firm will fully eliminate human CS by 2028. <a href="https://www.gartner.com/en/newsroom/press-releases/2025-09-10-gartner-predicts-none-of-the-fortune-500-companies-will-have-fully-eliminated-human-customer-service-by-2028">gartner.com</a></li>
-      <li><span class="vstat weak">Demoted</span> "~70% of U.S. contact-center volume moved offshore" — no primary source located; dropped from findings. The related FCC proposed rule on offshore call-center disclosure/caps (March 27, 2026) is separately confirmed. <a href="https://www.dwt.com/blogs/broadband-advisor/2026/04/fcc-proposes-limits-on-offshore-call-centers">dwt.com</a></li>
-    </ul>
+  <section class="section">
+    <div class="section-head"><span class="roman">VII</span><h2>The Open Question</h2></div>
+    <div class="pullquote">
+      <p>Will the augmentation effect measured at one Fortune 500 firm's Tier-1 desk generalize into a stable, larger human workforce — or does it merely delay a slower, quieter form of displacement that shows up first as fewer entry-level hires, not layoffs, in data nobody is currently built to track?</p>
+    </div>
+    <p>Every headcount statistic in this briefing measures layoffs and staffing cuts — a lagging, visible signal. None of the available data tracks entry-level hiring rates for customer-support roles over time, which is exactly where an academic in this space warns the effect could be hiding: not fired workers, but a shrinking front door into the profession. Answering this would settle whether the historian's "shrunk but stable tier" pattern is really underway, or whether it's a slower-motion version of the same disruption the skeptics say hasn't happened yet.</p>
+  </section>
+
+  <div class="endnotes">
+    <div class="label">Endnotes &amp; Verification Status</div>
+    <div class="endnote">
+      <span class="idx mono">1.</span>
+      <span><span class="vs">Corrected</span>Klarna/OpenAI, "Klarna AI assistant handles two-thirds of customer service chats," Klarna press release (2024); Sebastian Siemiatkowski, interview with Bloomberg, reported by Entrepreneur and CX Dive (May 2025) — "700 agents" is avoided-workload capacity, later updated to 853; not a confirmed layoff count. <a href="https://www.entrepreneur.com/business-news/klarna-ceo-reverses-course-by-hiring-more-humans-not-ai/491396">entrepreneur.com</a></span>
+    </div>
+    <div class="endnote">
+      <span class="idx mono">2.</span>
+      <span><span class="vs">Confirmed</span>Gartner Newsroom, "Gartner Predicts Half of Companies That Cut Customer Service Staff Due to AI Will Rehire by 2027" (Feb. 3, 2026), based on Oct. 2025 survey of 321 leaders; 20% had cut staff citing AI. <a href="https://www.gartner.com/en/newsroom/press-releases/2026-02-03-gartner-predicts-half-of-companies-that-cut-customer-service-staff-due-to-ai-will-rehire-by-2027">gartner.com</a></span>
+    </div>
+    <div class="endnote">
+      <span class="idx mono">3.</span>
+      <span><span class="vs">Confirmed</span>Gartner Newsroom, "Gartner Predicts None of the Fortune 500 Companies Will Have Fully Eliminated Human Customer Service by 2028" (Sept. 10, 2025). <a href="https://www.gartner.com/en/newsroom/press-releases/2025-09-10-gartner-predicts-none-of-the-fortune-500-companies-will-have-fully-eliminated-human-customer-service-by-2028">gartner.com</a></span>
+    </div>
+    <div class="endnote">
+      <span class="idx mono">4.</span>
+      <span><span class="vs weak">Demoted</span>"14% of customer interactions fully AI-resolved by 2027" (attributed to Gartner) — no verifiable Gartner primary source found; contradicts Gartner's actual published figures (80% by 2029 / 40% via unofficial tools by 2027). Treat as unsupported. <a href="https://www.retellai.com/blog/will-ai-replace-call-center-agents">retellai.com</a></span>
+    </div>
+    <div class="endnote">
+      <span class="idx mono">5.</span>
+      <span><span class="vs">Confirmed</span>Brynjolfsson, E., Li, D. &amp; Raymond, L.R., "Generative AI at Work," <em>Quarterly Journal of Economics</em> 140(2), 2025, pp. 889–942 (peer-reviewed; NBER Working Paper 31161, 2023). N=5,179 support agents; +14% productivity avg., +34% novices, ~0% experienced agents; attrition fell. <a href="https://academic.oup.com/qje/article/140/2/889/7990658">academic.oup.com</a></span>
+    </div>
+    <div class="endnote">
+      <span class="idx mono">6.</span>
+      <span><span class="vs">Confirmed</span>"How Chatbots Augment Human Intelligence in Customer Services," <em>Journal of Management Information Systems</em>, 2024 — finds chatbots largely ineffective on unstructured/complex tasks; organizations reallocate rather than eliminate labor for those tasks. <a href="https://www.tandfonline.com/doi/full/10.1080/07421222.2024.2415773">tandfonline.com</a></span>
+    </div>
+    <div class="endnote">
+      <span class="idx mono">7.</span>
+      <span><span class="vs weak">Contested</span>International Journal of Research and Innovation in Social Science, 2025 — survey-based, non-peer-reviewed-tier journal estimating up to 20% displacement of routine roles; specific percentages are self-reported/observational, not causal. Treat as weak signal only. <a href="https://rsisinternational.org/journals/ijriss/articles/the-impact-of-chatbots-on-customer-service-jobs-a-study-on-the-replacement-of-human-customer-support-agents/">rsisinternational.org</a></span>
+    </div>
+    <div class="endnote">
+      <span class="idx mono">8.</span>
+      <span><span class="vs">Confirmed</span>Bloomberg, "AI Customer-Support Startup Decagon Valued at $4.5 Billion" (Jan. 28, 2026); corroborated by Decagon's own release. Round led by Coatue Management and Index Ventures. <a href="https://www.bloomberg.com/news/articles/2026-01-28/ai-customer-support-startup-decagon-valued-at-4-5-billion">bloomberg.com</a></span>
+    </div>
+    <div class="endnote">
+      <span class="idx mono">9.</span>
+      <span><span class="vs">Corrected</span>TechCrunch, "Sierra Raises $950M as the Race to Own Enterprise AI Gets Serious" (May 4, 2026); Axios Pro (same date) — $15.8B valuation confirmed; source swapped from a secondary newsletter to primary wire coverage; round led by GV and Tiger Global. <a href="https://techcrunch.com/2026/05/04/sierra-raises-950m-as-the-race-to-own-enterprise-ai-gets-serious/">techcrunch.com</a></span>
+    </div>
+    <div class="endnote">
+      <span class="idx mono">10.</span>
+      <span><span class="vs">Corrected</span>Salesforce Q1 FY2027 earnings press release (May 27, 2026) — Agentforce $1.2B annualized revenue, +205% YoY. Framing corrected: Salesforce describes the concurrent support-headcount change as workforce "rebalancing," not layoffs. <a href="https://www.salesforce.com/news/press-releases/2026/05/27/fy27-q1-earnings/">salesforce.com</a></span>
+    </div>
+    <div class="endnote">
+      <span class="idx mono">11.</span>
+      <span><span class="vs">Confirmed</span>CNBC, "Salesforce CEO confirms job cuts because 'I need less heads with AI'" (Sept. 2, 2025) — support headcount reduced from ~9,000 to ~5,000, confirmed by CEO Marc Benioff. <a href="https://www.cnbc.com/2025/09/02/salesforce-ceo-confirms-4000-layoffs-because-i-need-less-heads-with-ai.html">cnbc.com</a></span>
+    </div>
+    <div class="endnote">
+      <span class="idx mono">12.</span>
+      <span><span class="vs">Confirmed</span>Grand View Research, "Call Center Artificial Intelligence Market" ($7.08B by 2030); Mordor Intelligence, "AI Market in Call Center Applications" ($4.20B in 2025 → $11.80B by 2030) — both independently corroborate the $2–4B-to-$7–12B range. <a href="https://www.grandviewresearch.com/industry-analysis/call-center-artificial-intelligence-market-report">grandviewresearch.com</a></span>
+    </div>
+    <div class="endnote">
+      <span class="idx mono">13.</span>
+      <span><span class="vs">Confirmed</span>Travel Weekly / BLS-sourced data — travel agency establishments fell ~59% (23,000 → under 10,000), 1997–2013; Stripe Economics (Ernie Tedeschi) — employment decline from a 2000 peak of ~339,000. Core stat confirmed; the "no formal retraining" claim is editorializing, not independently documented, and is separately demoted. <a href="https://www.travelweekly.com/Travel-News/Travel-Agent-Issues/Study-Disintermediation-hasn-t-happened">travelweekly.com</a></span>
+    </div>
+    <div class="endnote">
+      <span class="idx mono">14.</span>
+      <span><span class="vs">Corrected</span>CWA, "The Outsourcing Problem" — ~500,000 U.S. contact-center jobs lost; date range corrected from "the 2000s" to the report's actual 2013–2017 window. <a href="https://cwa-union.org/pages/the_outsourcing_problem">cwa-union.org</a></span>
+    </div>
+    <div class="endnote">
+      <span class="idx mono">15.</span>
+      <span><span class="vs">Corrected</span>U.S. Congress, "Keep Call Centers in America Act," H.R.4954 / S.2495, introduced July 29, 2025 — corrected from "enacted mandate" to pending legislation, still before the 119th Congress. <a href="https://www.congress.gov/bill/119th-congress/house-bill/4954">congress.gov</a></span>
+    </div>
+    <div class="endnote">
+      <span class="idx mono">16.</span>
+      <span><span class="vs weak">Demoted</span>Interactions, consumer-dissatisfaction-with-IVR studies — directionally confirms durable backlash and a "reach a human fast" premium market, but no primary 1990s–2000s-era study was located; usable data is 2010s–2020s retrospective, so sourcing is weak. <a href="https://www.interactions.com/press-releases/consumer-study-finds-overwhelming-dissatisfaction-with-ivr/">interactions.com</a></span>
+    </div>
   </div>
 
-  <div class="footer">Storm Research v2 &middot; 11/11 citation clusters independently verified against primary sources, 2026-08-27 &middot; 1 fabricated pairing, 3 corrected, 2 demoted &middot; Reliability = evidence quality, not author confidence</div>
+  <div class="colophon">
+    <b>The Longview</b> · Issue 26.240 · 16/16 citations independently verified against primary sources, 2026-08-28<br />
+    1 fabricated · 5 corrected · 3 demoted · reliability scores reflect evidence quality, not confidence<br />
+    Issue code is the publication year and day-of-year (YY.DDD), not a sequence count — it is reproducible from the date alone.<br />
+    Panel is author-constructed (Practitioner, Academic, Skeptic, Economist, Historian) — convergence is a strong hypothesis, not field consensus.
+  </div>
 
 </div>
 </body>

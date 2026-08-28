@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<!--
+  THE LONGVIEW — STORM RESEARCH BRIEFING TEMPLATE
+  Clone this file, fill every {{TOKEN}}, delete instructional comments, repeat the
+  repeating blocks (findings, endnotes, action items) as many times as needed.
+  Keep the <style> block verbatim. This is a PRINT-STYLE DOCUMENT under a fixed
+  masthead identity ("The Longview"), not a website: near-monochrome ink with one
+  spot color, a real (non-decorative) issue code, hierarchical rule weights,
+  footnote citations. No gradients, no colored pill/chip badges, no site nav.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{TOPIC_TITLE}} — The Longview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    /* near-monochrome ink scale */
+    --paper: #FAF9F6;
+    --paper-surround: #E9E7E0;
+    --ink: #1A1917;
+    --ink-soft: #4E4B44;
+    --ink-faint: #8D8A80;
+    --rule: #D8D4C9;
+    --rule-strong: #B0AB9C;
+    /* single spot color — used ONLY for the accent bar, scores, issue mark, verify line */
+    --spot: #A6421E;
+    --spot-soft: #F4E7E0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1C1B18;
+      --paper-surround: #121110;
+      --ink: #EAE7DD;
+      --ink-soft: #B9B4A6;
+      --ink-faint: #7C776A;
+      --rule: #3A372F;
+      --rule-strong: #4C483C;
+      --spot: #E08A66;
+      --spot-soft: #2C221C;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1C1B18;
+    --paper-surround: #121110;
+    --ink: #EAE7DD;
+    --ink-soft: #B9B4A6;
+    --ink-faint: #7C776A;
+    --rule: #3A372F;
+    --rule-strong: #4C483C;
+    --spot: #E08A66;
+    --spot-soft: #2C221C;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper-surround);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    max-width: 748px;
+    margin: 56px auto 96px;
+    background: var(--paper);
+    padding: 0 84px 64px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), 0 24px 64px rgba(0,0,0,0.10);
+  }
+
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+
+  /* ---------- NAMEPLATE ---------- */
+  .nameplate {
+    padding: 30px 0 14px; text-align: center; border-bottom: 3px solid var(--ink);
+  }
+  .nameplate .wordmark {
+    font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto;
+    font-weight: 600; font-size: 15px; letter-spacing: 0.34em; text-transform: uppercase;
+    color: var(--ink);
+  }
+  .nameplate .tagline {
+    font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-faint); margin-top: 6px;
+  }
+  .issue-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--ink-faint);
+    padding: 10px 0; border-bottom: 1px solid var(--rule);
+  }
+  .issue-row .mark { color: var(--spot); font-weight: 600; }
+
+  /* ---------- MASTHEAD ---------- */
+  .masthead { margin: 36px 0 44px; }
+  h1 {
+    font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; font-weight: 600; font-style: normal;
+    font-size: 39px; line-height: 1.12; letter-spacing: -0.005em; margin: 0 0 16px;
+    text-wrap: balance;
+  }
+  .dek {
+    font-size: 18.5px; font-style: italic; font-weight: 400; color: var(--ink-soft);
+    max-width: 34em; line-height: 1.5; margin: 0 0 26px; font-family: 'Source Serif 4', serif;
+  }
+  .byline {
+    display: flex; flex-wrap: wrap; gap: 8px 28px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--ink-faint);
+    border-top: 1px solid var(--rule); padding-top: 16px;
+  }
+  .byline b { color: var(--ink-soft); font-weight: 600; }
+  .verify-line {
+    margin-top: 18px; font-size: 13.5px; color: var(--ink-soft); font-style: italic;
+    border-left: 3px solid var(--spot); padding-left: 14px;
+  }
+  .verify-line b { color: var(--spot); font-style: normal; font-weight: 600; }
+
+  /* ---------- ABSTRACT ---------- */
+  .abstract {
+    margin: 40px 0 48px; padding: 26px 0; border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);
+  }
+  .abstract .label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-faint); margin-bottom: 10px;
+  }
+  .abstract p { font-size: 16.5px; line-height: 1.65; margin: 0; color: var(--ink); }
+  .abstract strong { font-weight: 600; color: var(--spot); }
+
+  /* ---------- TABLE OF CONTENTS ---------- */
+  .toc { margin: 0 0 56px; }
+  .toc-item {
+    display: flex; align-items: baseline; gap: 10px; font-size: 14.5px; padding: 7px 0;
+  }
+  .toc-item .num { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--spot); width: 22px; flex-shrink: 0; }
+  .toc-item .t { white-space: nowrap; }
+  .toc-item .leader { flex: 1; border-bottom: 1px dotted var(--rule-strong); transform: translateY(-4px); }
+
+  /* ---------- SECTIONS (hairline separator between; nothing above the first) ---------- */
+  .section { margin-top: 54px; padding-top: 30px; border-top: 1px solid var(--rule); }
+  .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 22px; }
+  .roman { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--spot); font-weight: 500; }
+  h2 {
+    font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; font-weight: 600; font-size: 23px; letter-spacing: -0.005em;
+    margin: 0; line-height: 1.25;
+  }
+  p { line-height: 1.7; font-size: 16px; color: var(--ink); margin: 0 0 14px; }
+  .lead { font-size: 17px; color: var(--ink-soft); }
+
+  /* ---------- FINDINGS ---------- */
+  .finding {
+    display: grid; grid-template-columns: 78px 1fr; gap: 4px 22px;
+    padding: 22px 0; border-top: 1px solid var(--rule);
+  }
+  .finding:first-of-type { border-top: none; padding-top: 0; }
+  .f-meta { font-family: 'IBM Plex Mono', monospace; }
+  .f-meta .score { font-size: 26px; font-weight: 500; color: var(--spot); line-height: 1; }
+  .f-meta .of10 { font-size: 11px; color: var(--ink-faint); }
+  .f-meta .rel { display: block; margin-top: 8px; font-size: 9.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); }
+  .f-title { font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; font-weight: 600; font-size: 18.5px; margin: 0 0 8px; }
+  .f-body p { font-size: 15px; margin-bottom: 10px; }
+  .f-tags { font-size: 13px; color: var(--ink-soft); }
+  .f-tags .tag-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); margin-right: 6px; }
+  .f-tags div { margin-bottom: 4px; }
+  .f-tags .corrected { color: var(--spot); }
+
+  .contested {
+    margin-top: 18px; padding: 16px 20px; border: 1px solid var(--ink); border-left: 3px solid var(--ink);
+  }
+  .contested .tag { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+  .contested .tag::before { content: "▲ "; color: var(--spot); }
+  .contested h4 { font-family: 'Fraunces', Georgia, serif; font-size: 15.5px; font-weight: 600; margin: 6px 0 6px; }
+  .contested p { font-size: 14px; margin: 0; color: var(--ink-soft); }
+
+  /* ---------- CONTRADICTION MAP (table) ---------- */
+  table.map { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 14px; }
+  table.map th {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase;
+    text-align: left; color: var(--ink-faint); font-weight: 500; padding: 0 14px 10px 0; border-bottom: 1.5px solid var(--ink);
+  }
+  table.map td { padding: 13px 14px 13px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  table.map td:first-child { font-weight: 600; white-space: nowrap; font-family: 'Fraunces', serif; }
+  table.map tr:last-child td { border-bottom: 1.5px solid var(--ink); }
+
+  /* ---------- PULL QUOTES (hidden connection / open question) ---------- */
+  .pullquote {
+    padding: 8px 0 8px 26px; border-left: 3px solid var(--spot); margin: 20px 0;
+  }
+  .pullquote p { font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; font-style: italic; font-size: 20px; line-height: 1.5; color: var(--ink); font-weight: 500; }
+  .pullquote p:last-child { margin-bottom: 0; }
+
+  /* ---------- MARGIN NOTE (assumption / 6th lens) ---------- */
+  .marginnote {
+    padding: 20px 24px; border: 1px solid var(--ink);
+  }
+  .marginnote .label { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; }
+  .marginnote .label::before { content: "✕ "; color: var(--spot); }
+  .marginnote p { font-size: 15px; color: var(--ink-soft); }
+  .marginnote p:last-child { margin-bottom: 0; }
+
+  /* ---------- ACTION LIST ---------- */
+  .actions { margin-top: 6px; }
+  .action { display: grid; grid-template-columns: 30px 1fr; gap: 4px 16px; padding: 14px 0; border-top: 1px solid var(--rule); }
+  .action:first-child { border-top: none; padding-top: 0; }
+  .action .n { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--spot); }
+  .action .do { font-weight: 600; font-size: 15.5px; display: block; margin-bottom: 4px; font-family: 'Fraunces', serif; }
+  .action p { font-size: 14.5px; margin: 0; color: var(--ink-soft); }
+
+  /* ---------- CLAIM SAFETY TABLE (monochrome, glyph-differentiated, one spot rule) ---------- */
+  table.safety { width: 100%; border-collapse: collapse; margin-top: 6px; }
+  table.safety th {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase;
+    text-align: left; padding: 10px 16px; font-weight: 600; color: var(--ink); border-bottom: 1.5px solid var(--ink);
+  }
+  table.safety th .glyph { color: var(--spot); margin-right: 6px; }
+  table.safety td { padding: 14px 16px; vertical-align: top; border-top: 1px solid var(--rule); border-right: 1px solid var(--rule); font-size: 13.5px; line-height: 1.55; }
+  table.safety td:last-child { border-right: none; }
+  table.safety td ul { margin: 0; padding-left: 16px; }
+  table.safety td li { margin-bottom: 8px; }
+
+  /* ---------- ENDNOTES ---------- */
+  .endnotes { margin-top: 64px; padding-top: 4px; border-top: 3px double var(--ink); }
+  .endnotes .label { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin: 18px 0 16px; }
+  .endnote { display: flex; gap: 10px; font-size: 12.5px; color: var(--ink-soft); margin-bottom: 11px; line-height: 1.55; }
+  .endnote .idx { font-family: 'IBM Plex Mono', monospace; color: var(--ink-faint); flex-shrink: 0; width: 20px; }
+  .endnote .vs { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.05em; text-transform: uppercase; margin-right: 6px; color: var(--ink); border: 1px solid var(--rule-strong); padding: 1px 4px; }
+  .endnote .vs.weak { color: var(--spot); border-color: var(--spot); }
+  .endnote a { color: var(--ink-soft); }
+
+  /* ---------- COLOPHON ---------- */
+  .colophon {
+    margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--rule);
+    font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--ink-faint); line-height: 1.85;
+  }
+  .colophon b { color: var(--ink-soft); }
+
+  sup.ref { font-family: 'IBM Plex Mono', monospace; color: var(--spot); font-size: 11px; }
+
+  @media (max-width: 640px) {
+    .sheet { padding: 0 26px 48px; margin: 0; }
+    h1 { font-size: 29px; }
+    .finding { grid-template-columns: 1fr; }
+    table.safety { display: block; }
+    table.safety thead, table.safety tbody, table.safety tr { display: block; }
+    table.safety td { border-right: none; }
+  }
+
+  @media print {
+    @page { margin: 2.1cm 2cm; }
+    body { background: #fff; }
+    .sheet { box-shadow: none; max-width: 100%; margin: 0; padding: 0 0 0; }
+    .nameplate { padding-top: 0; }
+    .section { break-inside: avoid-page; }
+    .finding { break-inside: avoid-page; }
+    table.safety th, .contested, .marginnote, .pullquote { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    a { color: inherit; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- ============ NAMEPLATE (fixed masthead identity — do not rename per run) ============ -->
+  <div class="nameplate">
+    <div class="wordmark">The Longview</div>
+    <div class="tagline">Multi-perspective research · independently verified</div>
+  </div>
+  <div class="issue-row">
+    <!-- ISSUE CODE = year.dayofyear from {{DATE}}, e.g. 2026-08-28 -> 26.240. Real and reproducible, not a fake sequence. -->
+    <span>Issue <span class="mark">{{ISSUE_CODE: YY.DDD computed from DATE}}</span></span>
+    <span>{{DATE}}</span>
+  </div>
+
+  <!-- ============ MASTHEAD ============ -->
+  <header class="masthead">
+    <h1>{{TOPIC_TITLE}}</h1>
+    <p class="dek">{{DEK: one-sentence editorial subtitle framing what's actually at stake in this topic — not a restatement of the title.}}</p>
+    <div class="byline">
+      <span><b>Method</b> Five independent expert lenses, cross-examined and verified</span>
+      <span><b>Prepared for</b> {{AUDIENCE: the reader's role; omit this span if none given}}</span>
+    </div>
+    <p class="verify-line"><b>Verified.</b> All {{N}} citations independently checked against primary sources on {{DATE}} — {{X}} fabricated, {{Y}} corrected, {{Z}} demoted. Confidence scores below reflect post-verification evidence quality, not author confidence.</p>
+  </header>
+
+  <!-- ============ ABSTRACT ============ -->
+  <div class="abstract">
+    <div class="label">Abstract</div>
+    <p>{{CEO_SUMMARY: one dense paragraph. Lead with the settled fact, then the contested interpretation, then the central tension. Use <strong>one bold phrase</strong> for the single most important sentence — nuance, not headline.}}</p>
+  </div>
+
+  <!-- ============ TABLE OF CONTENTS ============ -->
+  <nav class="toc">
+    <div class="toc-item"><span class="num mono">I</span><span class="t">Key Findings</span><span class="leader"></span></div>
+    <div class="toc-item"><span class="num mono">II</span><span class="t">Where the Lenses Disagree</span><span class="leader"></span></div>
+    <div class="toc-item"><span class="num mono">III</span><span class="t">The Hidden Connection</span><span class="leader"></span></div>
+    <div class="toc-item"><span class="num mono">IV</span><span class="t">Assumptions &amp; the Missing Lens</span><span class="leader"></span></div>
+    <div class="toc-item"><span class="num mono">V</span><span class="t">Implications for {{AUDIENCE_SHORT: e.g. "Operators" — omit qualifier if none given}}</span><span class="leader"></span></div>
+    <div class="toc-item"><span class="num mono">VI</span><span class="t">What's Safe to Assert</span><span class="leader"></span></div>
+    <div class="toc-item"><span class="num mono">VII</span><span class="t">The Open Question</span><span class="leader"></span></div>
+  </nav>
+
+  <!-- ============ I. KEY FINDINGS ============ -->
+  <section class="section">
+    <div class="section-head"><span class="roman">I</span><h2>Key Findings, Ranked by Reliability</h2></div>
+
+    <!-- REPEAT this .finding block 5x, highest reliability first -->
+    <div class="finding">
+      <div class="f-meta">
+        <span class="score">{{SCORE}}</span><span class="of10">/10</span>
+        <span class="rel">{{RELIABILITY_LABEL: e.g. Well-supported / Contested / Thin}}</span>
+      </div>
+      <div>
+        <div class="f-title">{{FINDING_TITLE}}</div>
+        <div class="f-body">
+          <p>{{FINDING_BODY: what it says, the evidence, and the verified caveat that caps the score. Bold any correction made during verification.}}</p>
+        </div>
+        <div class="f-tags">
+          <div><span class="tag-label">Supported by</span>{{WHICH LENSES + the actual study/source}}</div>
+          <div><span class="tag-label">Challenged by</span>{{WHICH LENSES disagree, or "No one"}}</div>
+          <!-- delete this line if verification changed nothing -->
+          <div class="corrected"><span class="tag-label">Corrected</span>{{what changed after primary-source check}}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contested/demoted claim sidebar — use for anything verification flagged; delete if none -->
+    <div class="contested">
+      <div class="tag">Contested signal · monitor, do not assert · {{SCORE}}/10</div>
+      <h4>{{CLAIM_TITLE}}</h4>
+      <p>{{Why it is contested: the critique, the counter-evidence, the source.}}</p>
+    </div>
+  </section>
+
+  <!-- ============ II. CONTRADICTION MAP ============ -->
+  <section class="section">
+    <div class="section-head"><span class="roman">II</span><h2>Where the Lenses Disagree</h2></div>
+    <p class="lead">{{One-line framing of the sharpest disagreement across the panel.}}</p>
+    <table class="map">
+      <thead><tr><th>Lens</th><th>Position</th><th>Strongest evidence</th></tr></thead>
+      <tbody>
+        <!-- REPEAT one row per lens: Practitioner, Academic, Skeptic, Economist, Historian -->
+        <tr><td>{{LENS NAME}}</td><td>{{Their core position in one line.}}</td><td>{{Their strongest cited evidence, compressed.}}</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:18px;"><b>Resolving question:</b> {{The single empirical question that would settle the biggest contradiction.}}</p>
+    <p><b>Universal agreement:</b> {{What every lens confirms even where they otherwise clash — the likely load-bearing finding.}}</p>
+  </section>
+
+  <!-- ============ III. HIDDEN CONNECTION ============ -->
+  <section class="section">
+    <div class="section-head"><span class="roman">III</span><h2>The Hidden Connection</h2></div>
+    <p>{{Set up the apparent contradiction between two findings.}}</p>
+    <div class="pullquote">
+      <p>{{Resolve it: the non-obvious link only visible across all five lenses, and the one-sentence payoff. If it leans on a weak finding, say so in parentheses.}}</p>
+    </div>
+  </section>
+
+  <!-- ============ IV. ASSUMPTIONS / MISSING LENS ============ -->
+  <section class="section">
+    <div class="section-head"><span class="roman">IV</span><h2>Assumptions &amp; the Missing Lens</h2></div>
+    <div class="marginnote">
+      <div class="label">What this briefing rests on</div>
+      <p>{{What variables the five lenses froze. Name the 6th perspective that would change the conclusions, not just add nuance.}}</p>
+      <p>{{The one omission that could invert the findings.}}</p>
+    </div>
+  </section>
+
+  <!-- ============ V. IMPLICATIONS / ACTIONS ============ -->
+  <section class="section">
+    <div class="section-head"><span class="roman">V</span><h2>Implications for {{AUDIENCE_SHORT}}</h2></div>
+    <p class="lead">{{Framing: specific moves, not principles.}}</p>
+    <div class="actions">
+      <!-- REPEAT 3-6 action items -->
+      <div class="action">
+        <span class="n">{{NN}}</span>
+        <div><span class="do">{{The move in a sentence.}}</span><p>{{Why + exactly how, tied to a specific finding above.}}</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VI. CLAIM SAFETY GUIDE ============ -->
+  <section class="section">
+    <div class="section-head"><span class="roman">VI</span><h2>What's Safe to Assert</h2></div>
+    <table class="safety">
+      <thead>
+        <tr>
+          <th><span class="glyph">✓</span>Assert</th>
+          <th><span class="glyph">▲</span>Caveat</th>
+          <th><span class="glyph">✕</span>Avoid</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><ul><li>{{Claims confirmed by primary sources — safe to state flatly.}}</li></ul></td>
+          <td><ul><li>{{Claims that need attribution or qualification.}}</li></ul></td>
+          <td><ul><li>{{Contested, preprint, or unverifiable claims — named so they don't slip back in.}}</li></ul></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ VII. OPEN QUESTION ============ -->
+  <section class="section">
+    <div class="section-head"><span class="roman">VII</span><h2>The Open Question</h2></div>
+    <div class="pullquote">
+      <p>{{The one question that would change everything if answered.}}</p>
+    </div>
+    <p>{{Why it matters: what it threatens, why no lens addressed it, what answering it unlocks.}}</p>
+  </section>
+
+  <!-- ============ ENDNOTES ============ -->
+  <div class="endnotes">
+    <div class="label">Endnotes &amp; Verification Status</div>
+    <!-- REPEAT per citation. vs class: "" (confirmed) | "" (corrected/partial, same style) | weak (demoted/preprint/contested — the only state that gets the spot color) -->
+    <div class="endnote">
+      <span class="idx mono">{{n}}.</span>
+      <span><span class="vs {{weak: only if Demoted/Contested, else omit}}">{{Confirmed|Corrected|Contested|Demoted}}</span>{{Full citation: authors, year, title, venue, the key figure, and any limit found during verification.}} <a href="{{PRIMARY_URL}}">{{domain}}</a></span>
+    </div>
+  </div>
+
+  <!-- ============ COLOPHON ============ -->
+  <div class="colophon">
+    <b>The Longview</b> · Issue {{ISSUE_CODE}} · {{N}}/{{N}} citations independently verified against primary sources, {{DATE}}<br />
+    {{X}} fabricated · {{Y}} corrected · {{Z}} demoted · reliability scores reflect evidence quality, not confidence<br />
+    Issue code is the publication year and day-of-year (YY.DDD), not a sequence count — it is reproducible from the date alone.<br />
+    Panel is author-constructed (Practitioner, Academic, Skeptic, Economist, Historian) — convergence is a strong hypothesis, not field consensus.
+  </div>
+
+</div>
+</body>
+</html>
